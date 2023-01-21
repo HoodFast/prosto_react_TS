@@ -5,7 +5,7 @@ type RatingPropsType = {
 }
 
 export function UnControlledRating(props: RatingPropsType) {
-    let [value, setValue] = useState(3)
+    let [value, setValue] = useState(0)
     const onClickButtonHandler = (e: MouseEvent<HTMLButtonElement>) => {
         setValue(Number(e.currentTarget.title))
     }
@@ -31,9 +31,5 @@ type StarsPropType = {
 }
 
 function Star(props: StarsPropType) {
-    if (props.selected === true) {
-        return (<span><b>star </b></span>)
-    } else {
-        return (<span>star </span>)
-    }
+    return props.selected ? (<span><b>star</b></span>) : (<span>star</span>)
 }
