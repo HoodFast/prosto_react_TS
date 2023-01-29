@@ -1,0 +1,17 @@
+.styleOn {
+    background-color: chartreuse;
+    border-radius: 50%;
+}
+.styleOnText {
+    color: gold;
+}
+
+
+.styleOff {
+    background-color: red;
+    border-radius: 50%;
+}
+
+.styleOffText {
+    color: red;
+}
