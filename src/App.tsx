@@ -16,7 +16,7 @@ function App() {
         <div className={"App"}>
             <PageTitle title={"This is APP component"}/>
             <PageTitle title={"user"}/>
-            <UnControlledRating/>
+            <UnControlledRating onChange={setRatingValue}/>
 
             <Accordion titleValue={"Menu"} onChange={() => setAcordeonCollapsed(!accordeonCollapsed)} collapsed={accordeonCollapsed}/>
             {/*<UncontrolledAccordion titleValue={"Users"} />*/}
