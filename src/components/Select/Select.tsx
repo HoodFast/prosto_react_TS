@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-
+import React, {KeyboardEvent, useEffect, useState} from "react";
+import s from './Select.module.css'
 
 export type SelectPropsType = {
-    titleValue: string
+    value?: any
     onChange: (value: any) => void
     items: itemType[]
 }
@@ -14,17 +14,67 @@ type itemType = {
 
 export const SelectIt = (props: SelectPropsType) => {
     const [value, setValue] = useState(false)
-    const onClickHandler = (el:itemType) => {
-        props.onChange(el.title)
+    const [hover, setHover] = useState(props.value)
+    const selectItem = props.items.find(el => el.value === props.value)
+    const hoveredItem = props.items.find(el => el.value === hover)
+
+    useEffect(() => {
+        setHover(props.value)
+    }, [props.value])
+
+    const onClickHandler = (el?: itemType) => {
+        el && props.onChange(el.value)
         setValue(!value)
     }
-    return (
-        <div>
-            <div onClick={() => {
-                setValue(!value)
-            }}>{props.titleValue}</div>
-            {value && props.items.map(el => <div onClick={() => onClickHandler(el)}>{el.title}</div>)}
 
-        </div>
+    const body = props.items.map((el, index) =>
+        <div
+            onMouseEnter={() => setHover(el.value)}
+            className={`${s.item} ${hoveredItem === el && s.selected}`}
+            key={index}
+            onClick={() => onClickHandler(el)}
+        >
+            {el.title}
+        </div>)
+    const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            for (let i = 0; i < props.items.length; i++) {
+                if (props.items[i].value === hover) {
+                    const pretendentEl = e.key === "ArrowDown"
+                        ? props.items[i + 1]
+                        : props.items[i - 1];
+                    if (pretendentEl) {
+                        props.onChange(pretendentEl.value)
+                        return
+                    }
+                }
+            }
+            if(value) {
+                props.onChange(props.items[0].value)
+            }
+        }
+        if (e.key==="Escape" || e.key==="Enter") {
+            setValue(false)
+            return
+        }
+    }
+
+    return (
+        <>
+            <div
+                tabIndex={0}
+                onKeyUp={onKeyUp}
+                className={s.select}>
+                <span className={s.main} onClick={() => onClickHandler()}>
+                    {selectItem && selectItem.title}
+                </span>
+                {value &&
+                    <div className={s.items}>
+                        {body}
+                    </div>
+                }
+            </div>
+        </>
+
     )
 }
