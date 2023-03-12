@@ -8,7 +8,7 @@ import {Accordion} from "./components/Accordion/Accordion";
 import {UncontrolledOnOff} from "./components/UncontrolledOnOff/UncontrolledOnOff";
 
 function App() {
-
+const AccordionMemo=React.memo(Accordion)
     const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     const [accordeonCollapsed, setAcordeonCollapsed] = useState<boolean>(true)
     const[switchOn,setSwitchOn]=useState<boolean>(false)
@@ -18,7 +18,7 @@ function App() {
             <PageTitle title={"user"}/>
             <UnControlledRating onChange={setRatingValue}/>
 
-            <Accordion onClick={()=>{}} items={[]} titleValue={"Menu"} onChange={() => setAcordeonCollapsed(!accordeonCollapsed)} collapsed={accordeonCollapsed}/>
+            <AccordionMemo onClick={()=>{}} items={[]} titleValue={"Menu"} onChange={() => setAcordeonCollapsed(!accordeonCollapsed)} collapsed={accordeonCollapsed}/>
             {/*<UncontrolledAccordion titleValue={"Users"} />*/}
             <Rating value={ratingValue} onClick={setRatingValue}/>
 
