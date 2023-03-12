@@ -1,4 +1,4 @@
-import React, {MouseEvent, useState} from "react";
+import React, {useState} from "react";
 import {RatingValueType} from "../Rating/Rating";
 
 type RatingPropsType = {

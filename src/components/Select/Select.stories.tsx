@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {action} from "@storybook/addon-actions";
 import {SelectIt} from "./Select";
 
 
@@ -11,8 +10,6 @@ export default {
     title: 'Select',
     component: SelectIt
 }
-const callback = action('click')
-const onClick = (value:any)=>{alert(`Push item № ${value}`)}
 
 
 

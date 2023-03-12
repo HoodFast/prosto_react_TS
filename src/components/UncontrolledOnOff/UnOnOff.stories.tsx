@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {action} from "@storybook/addon-actions";
 import {UncontrolledOnOff} from "./UncontrolledOnOff";
-import {OnOff} from "../OnOff/OnOff";
+
 
 
 export default {
