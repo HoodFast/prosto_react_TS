@@ -10,11 +10,15 @@ export default {
 
 
 
-export const UseClock = () => {
-
-
+export const DigitalClock = () => {
     return <>
-        <Clock/>
+        <Clock mode={"digital"}/>
+    </>
+}
+
+export const AnaloglClock = () => {
+    return <>
+        <Clock mode={"analog"}/>
     </>
 }
 
