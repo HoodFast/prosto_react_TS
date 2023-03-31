@@ -65,3 +65,46 @@ export const SetIntervalExample = () => {
         <button onClick={()=>setCounter(counter+1)}>+</button>
     </>
 }
+
+export const ResetEffectExample = () => {
+    const [counter, setCounter] = useState(1)
+    console.log("rendered component")
+
+    useEffect(() => {
+        console.log("effect occurred"+ counter)
+        return ()=>{
+            console.log("reset")
+        }
+    },[counter])
+
+
+
+
+    return <>
+        Hello, {counter}
+        <button onClick={()=>setCounter(counter+1)}>+</button>
+    </>
+}
+
+export const KeysTrackerExample = () => {
+    const [text, setText] = useState('')
+    console.log("rendered component" + text)
+
+    useEffect(() => {
+        const handler=(e:KeyboardEvent)=>{
+            console.log(e.code);
+            setText(text+e.key)
+        }
+        window.document.addEventListener('keypress',handler)
+        return ()=>{
+            window.document.removeEventListener('keypress',handler)
+        }
+    },[text])
+
+
+
+
+    return <>
+        Typed text: {text}
+    </>
+}
